@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PhishShield</title>
+
+<style>
+/* =========================
+   Reset
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   Full Screen Background
+========================= */
+body,html{
+    height:100%;
+    overflow:hidden;
+}
+
+/* Carousel container */
+.carousel{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    overflow:hidden;
+}
+
+/* Slides */
+.slides{
+    display:flex;
+    height:100%;
+    transition: transform 1.5s ease;
+}
+
+.slides img{
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+    flex:0 0 100%;
+}
+
+/* Dark overlay for readability */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    z-index:-1;
+}
+
+/* =========================
+   Center Content
+========================= */
+.center-content{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+h1{
+    font-size:80px;
+    letter-spacing:3px;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:20px;
+    max-width:700px;
+    opacity:0.9;
+    margin-bottom:35px;
+}
+
+/* Button */
+.start-btn{
+    padding:16px 40px;
+    font-size:18px;
+    background:#22c55e;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.start-btn:hover{
+    background:#16a34a;
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Background Carousel -->
+<div class="carousel">
+    <div class="slides" id="slides">
+        <img src="fraud.jpg">
+        <img src="links.jpeg">
+        <img src="security.jpg">
+    </div>
+</div>
+
+<!-- Dark overlay -->
+<div class="overlay"></div>
+
+
+<!-- Center Text -->
+<div class="center-content">
+    <h1>PhishShield</h1>
+
+    <p>
+        An explainable scam and phishing detection system
+        that protects everyday users from fraud, fake links and malicious messages.
+    </p>
+
+    <button class="start-btn" onclick="location.href='main.html'">
+        Start Scanning →
+    </button>
+</div>
+
+
+<script>
+const slides = document.getElementById("slides");
+const total = slides.children.length;
+
+let index = 0;
+
+setInterval(() => {
+    index = (index + 1) % total;
+    slides.style.transform = `translateX(-${index * 100}vw)`;
+}, 5000); // slower & smooth
+</script>
+
+</body>
+</html>
