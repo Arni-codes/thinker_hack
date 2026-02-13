@@ -17,6 +17,7 @@ Team Duo
 # Hosted Project Link
 
 Live website:
+https://arni-codes.github.io/thinker_hack/
 
 Source Code:
 https://github.com/Arni-codes/thinker_hack.git
