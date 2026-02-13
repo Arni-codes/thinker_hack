@@ -1,6 +1,6 @@
 body{
     font-family: nunito, sans-serif;
-    background-color: #7D8597;
+    background-color: #1c2321;
     text-align: center;
     padding: 30px;
 }
@@ -12,15 +12,16 @@ h1{
 textarea{
     width: 80%;
     height: 140px;
+    background-color: #eef1ef;
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #33415C;
+    border: 2px solid #7d98a1;
     border-radius: 5px;
     margin-bottom: 20px;
     
 }
 button{
-    background-color: #33415C;
+    background-color: #5e6572;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -29,7 +30,7 @@ button{
     cursor: pointer;
 }
 button:hover{
-    background-color: #0353A4;
+    background-color: #a9b4c2;
 }
 #result{
     margin-top: 25px;
@@ -38,6 +39,7 @@ button:hover{
 p{
     font-family: "playwrite NZ Basic",cursive;
     font-size: 1.2em;
+    color: #a9b4c2;
 }
 .low{
     color: green;
