@@ -5,9 +5,7 @@
 <title>PhishShield</title>
 
 <style>
-/* =========================
-   Reset
-========================= */
+
 *{
     margin:0;
     padding:0;
@@ -15,15 +13,12 @@
     font-family: Arial, sans-serif;
 }
 
-/* =========================
-   Full Screen Background
-========================= */
+
 body,html{
     height:100%;
     overflow:hidden;
 }
 
-/* Carousel container */
 .carousel{
     position:fixed;
     width:100%;
@@ -32,7 +27,6 @@ body,html{
     overflow:hidden;
 }
 
-/* Slides */
 .slides{
     display:flex;
     height:100%;
@@ -46,7 +40,6 @@ body,html{
     flex:0 0 100%;
 }
 
-/* Dark overlay for readability */
 .overlay{
     position:fixed;
     width:100%;
@@ -55,9 +48,6 @@ body,html{
     z-index:-1;
 }
 
-/* =========================
-   Center Content
-========================= */
 .center-content{
     height:100%;
     display:flex;
@@ -82,7 +72,6 @@ p{
     margin-bottom:35px;
 }
 
-/* Button */
 .start-btn{
     padding:16px 40px;
     font-size:18px;
@@ -102,7 +91,6 @@ p{
 
 <body>
 
-<!-- Background Carousel -->
 <div class="carousel">
     <div class="slides" id="slides">
         <img src="fraud.jpg">
@@ -111,11 +99,8 @@ p{
     </div>
 </div>
 
-<!-- Dark overlay -->
 <div class="overlay"></div>
 
-
-<!-- Center Text -->
 <div class="center-content">
     <h1>PhishShield</h1>
 
@@ -139,7 +124,7 @@ let index = 0;
 setInterval(() => {
     index = (index + 1) % total;
     slides.style.transform = `translateX(-${index * 100}vw)`;
-}, 5000); // slower & smooth
+}, 3000); 
 </script>
 
 </body>
