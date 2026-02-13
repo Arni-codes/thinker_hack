@@ -10,12 +10,42 @@ function count(text,words){
     return words.filter(word => text.includes(word)).length;
 }
 function speak(text){
-    const msg=new speechSynthesisUtterance(text);
+    const msg=new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(msg);
 }
 function clearText(){
     document.getElementById("mid").value="";
     document.getElementById("result").innerHTML="";
+}
+function checkLinks(text){
+    let score=0;
+    let reasons=[];
+    const urlRegex=/https?:\/\/[^\s]+/g;
+    const urls=text.match(urlRegex);
+    if(!urls){
+        return {score:0,reasons:[]};
+        urls.forEach(url=>{
+            if(/bit\.ly|tinyurl\.com|goo\.gl/.test(url)){
+                score+=25;
+                reasons.push("Contains suspicious shortened URL: "+url);
+            }
+            if(/\.(xyz|top|club|online|site|info|biz|ru|cn|click|tk|ml|win)$/i.test(url)){
+                score+=20;
+                reasons.push("Contains URL with risky domain: "+url);
+            }
+            if(/https?:\/\/\d+\.\d+\.\d+\.\d+/.test(url)){
+                score+=30;
+                reasons.push("Contains URL with IP address instead of domain: "+url);
+             }
+             if((url.match(/-/g)||[]).length>3){
+                score+=10;
+                reasons.push("Contains URL with excessive hyphens: "+url);
+             }
+     });
+    }
+    
+
+    return {score,reasons};
 }
 function analyze(){
     let text=document.getElementById("mid").value.toLowerCase();
@@ -48,7 +78,8 @@ function analyze(){
     let css="low";
     if(score>=60){
         level="HIGH";
-    }else if(score>30){
+    }
+    else if(score>30){
         level="MEDIUM";
         css="medium";
     }
@@ -61,4 +92,3 @@ function analyze(){
 
     speak(`This message has ${level} scam risk.`);
 }
-    
