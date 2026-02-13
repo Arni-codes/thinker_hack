@@ -68,3 +68,65 @@ function checkLinks(text){
 
     return {score, reasons};
 }
+function analyze(){
+
+    let text=document.getElementById("mid").value.toLowerCase();
+
+    if(text.trim()===""){
+        alert("Please paste a message first.");
+        return;
+    }
+
+    let score=0;
+    let reasons=[];
+
+
+    if(count(text,sensitive)>0){
+        score+=30;
+        reasons.push("Requests confidential information");
+    }
+
+    if(count(text,urgency)>0){
+        score+=25;
+        reasons.push("Uses urgency language");
+    }
+
+    if(count(text,fear)>0){
+        score+=20;
+        reasons.push("Uses fear or threats");
+    }
+
+    if(count(text,reward)>0){
+        score+=15;
+        reasons.push("Offers suspicious rewards");
+    }
+
+
+    let linkCheck = checkLinks(text);
+    score += linkCheck.score;
+    reasons.push(...linkCheck.reasons);
+
+
+    let level="LOW";
+    let css="low";
+
+    if(score>=60){
+        level="HIGH";
+        css="high";
+    }
+    else if(score>20){
+        level="MEDIUM";
+        css="medium";
+    }
+
+
+    let resultHTML=`
+        <h2 class="${css}">Risk Level: ${level}</h2>
+        <p>Score: ${score}/100</p>
+        <ul>${reasons.map(r=>'<li>'+r+'</li>').join("")}</ul>
+    `;
+
+    document.getElementById("result").innerHTML=resultHTML;
+
+    speak(`This message has ${level} scam risk.`);
+}
