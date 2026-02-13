@@ -35,9 +35,10 @@ button:hover{
 #result{
     margin-top: 25px;
     font-size: 18px;
+    color:#eef1ef
 }
 p{
-    font-family: "playwrite NZ Basic",cursive;
+    font-family: "arial",sans-serif;
     font-size: 1.2em;
     color: #a9b4c2;
 }
