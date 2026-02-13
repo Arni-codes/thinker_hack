@@ -6,3 +6,59 @@ const sensitive=["password","account","social security number","credit card","ba
 document.getElementById("analyzeBtn").addEventListener("click", analyze);
 document.getElementById("clearBtn").addEventListener("click", clearText);
 
+function count(text,words){
+    return words.filter(word => text.includes(word)).length;
+}
+function speak(text){
+    const msg=new speechSynthesisUtterance(text);
+    speechSynthesis.speak(msg);
+}
+function clearText(){
+    document.getElementById("mid").value="";
+    document.getElementById("result").innerHTML="";
+}
+function analyze(){
+    let text=document.getElementById("mid").value.toLowerCase();
+    if(text.trim()===""){
+        alert("Please paste a message first.");
+        return;
+    }
+    let score=0;
+    let reason=[];
+    if(count(text,sensitive)>0){
+        score+=30;
+        reason.push("Request confidential information ");
+    }
+    if(count(text,urgency)>0){
+        score+=15;
+        reason.push("Uses urgency language");
+    }
+    if(count(text,fear)>0){
+        score+=20;
+        reason.push("Uses fear or threats");
+    }
+    if(count(text,reward)>0){
+        score+=10;
+        reason.push("Offers suspicious rewards");
+    }
+    let linkCheck = checkLinks(text);
+    score += linkCheck.score;
+    reasons.push(...linkCheck.reasons);
+    let level="LOW";
+    let css="low";
+    if(score>=60){
+        level="HIGH";
+    }else if(score>30){
+        level="MEDIUM";
+        css="medium";
+    }
+    let resultHTML=`<h2 class="${css}">Risk Level: ${level}</h2>
+    <p>Score: ${score}/100</p>;
+
+    <ul>${reasons.map(r=>'<li>'+r+'</li>').join("")}</ul>`;
+
+    document.getElementById("result").innerHTML=resultHTML;
+
+    speak(`This message has ${level} scam risk.`);
+}
+    
