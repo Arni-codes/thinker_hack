@@ -134,7 +134,11 @@ Not applicable (frontend-only static app)
 # Project Demo
 
 ## Video
-(Add your YouTube/Drive demo link here)
+
+
+
+https://github.com/user-attachments/assets/14ae56c7-87ba-4253-ba7d-db5c61703fea
+
 
 Demonstrates:
 - Home page
